@@ -1,0 +1,10 @@
+{
+  "name": "moodle-atto_cleantest-button",
+  "builds": {
+    "moodle-atto_cleantest-button": {
+      "jsfiles": [
+        "button.js"
+      ]
+    }
+  }
+}

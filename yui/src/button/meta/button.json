@@ -1,0 +1,8 @@
+{
+    "moodle-atto_cleantest-button": {
+        "requires": [
+            "moodle-editor_atto-plugin",
+            "escape"
+        ]
+    }
+}
