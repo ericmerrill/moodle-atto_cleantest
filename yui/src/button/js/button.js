@@ -47,10 +47,11 @@ var PLUGINNAME = 'atto_cleantest',
     TESTTEMPLATE = '' +
             '<div class="codetest">' +
                 '<div>' +
+                    '{{#if about}}<div>{{about}}</div>{{/if}}' +
                     '{{#if pass}}' +
                         '<div class="alert alert-success alert-block" data-toggle="collapse" href="#collapse{{testNumber}}" ' +
                         'role="button" aria-expanded="false" aria-controls="collapse{{testNumber}}">' +
-                        '{{testNumber}} - Pass - Click to expand</div>' +
+                        '{{testNumber}} - Pass - Click to expand<br/></div>' +
                     '{{else}}' +
                         '<div class="alert alert-danger alert-block" data-toggle="collapse" href="#collapse{{testNumber}}" ' +
                         'role="button" aria-expanded="true" aria-controls="collapse{{testNumber}}">{{testNumber}} - Fail</div>' +
@@ -77,7 +78,6 @@ var PLUGINNAME = 'atto_cleantest',
 Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
     dialogue: null,
 
-
     initializer: function() {
         var button = this.addButton({
             icon: 'e/question',
@@ -95,7 +95,7 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
         this.dialogue = this.getDialogue({
             modal: false,
             headerContent: M.util.get_string('pluginname', PLUGINNAME),
-            width: '400px'
+            width: '600px'
         });
 
         var template = Y.Handlebars.compile(TEMPLATE),
@@ -137,6 +137,7 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
             }
 
             content = Y.Node.create(template({
+                about: test.about,
                 inputCode: test.input,
                 outputCode: cleaned,
                 expectedCode: test.expected,

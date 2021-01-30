@@ -34,11 +34,13 @@ defined('MOODLE_INTERNAL') || die();
 function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     $tests = [
         [
+            'about' => 'Single orphan li.',
             'input' => '
 <li>Something</li>',
             'expected' => '
 <ul><li>Something</li></ul>'
         ], [
+            'about' => 'Good html, do nothing.',
             'input' => '
 <ol class="someClass">
     <li>Something</li>
@@ -48,6 +50,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     <li>Something</li>
 </ol>'
         ], [
+            'about' => 'Missing ol start tag.',
             'input' => '
     <li>Something 1</li>
     <li>Something 2</li>
@@ -57,6 +60,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     <li>Something 2</li>
 </ol>'
         ], [
+            'about' => 'Missing ul start tag.',
             'input' => '
     <li>Something 1</li>
     <li>Something 2</li>
@@ -66,6 +70,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     <li>Something 2</li>
 </ul>'
         ], [
+            'about' => 'Orphaned li tags, with other content.',
             'input' => '
 <p>Something before</p>
 <li>A</li>
@@ -77,6 +82,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
 <li>B</li></ul>
 <p>Something after</p>'
         ], [
+            'about' => 'Missing closing li.',
             'input' => '
 <ul>
     <li>Something 1</li>
@@ -88,6 +94,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     <li>Something 2
 </li></ul>'
         ], [
+            'about' => 'Missing closing li mid list',
             'input' => '
 <ul>
     <li>Something 1</li>
@@ -101,6 +108,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
     </li><li>Something 3</li>
 </ul>'
         ], [
+            'about' => 'Orphan list items with missing close li',
             'input' => '
 <li>Something 1</li>
 <li>Something 2',
@@ -108,6 +116,7 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
 Something 1
 Something 2'
         ], [
+            'about' => 'List with nested lis',
             'input' => '
 <ul>
     <li>Something 1<li>Something 3</li></li>
@@ -119,6 +128,7 @@ Something 2'
     <li>Something 2</li>
 </ul>'
         ], [
+            'about' => 'List with nested lis on different lines',
             'input' => '
 <ul>
     <li>Something 1
@@ -132,6 +142,7 @@ Something 2'
     <li>Something 2</li>
 </ul>'
         ], [
+            'about' => 'Missing closing ul with nested lists',
             'input' => '
 <p>Something before</p>
 <ul>
@@ -153,6 +164,7 @@ Something 2'
     <li>B</li></ul>
 <p>Something after</p>'
         ], [
+            'about' => 'Missing closing ul and ol nested',
             'input' => '
 <p>Something before</p>
 <ul>
@@ -172,6 +184,7 @@ Something 2'
     <li>B</li></ol>
 <p>Something after</p>'
         ], [
+            'about' => 'Missing closing ul and ol nested, different lis',
             'input' => '
 <p>Something before</p>
 <ul>
@@ -187,29 +200,55 @@ Something 2'
         <li>2</li></ol>
 <p>Something after</p>'
         ], [
+            'about' => 'Content with tags in content',
             'input' => '
-<div class="li">
+<div class="li ul ol">
     &lt;li&gt;
     &lt;ul&gt;
     &lt;ol&gt;
 </div>',
             'expected' => '
-<div class="li">
+<div class="li ul ol">
     &lt;li&gt;
     &lt;ul&gt;
     &lt;ol&gt;
 </div>'
         ], [
+            'about' => 'Orphaned LI between other lists',
+            'input' => '
+<ol>
+    <li>Something 1</li>
+    <li>Something 2</li>
+</ol>
+
+<li>Something 3</li>
+<li>Something 4</li>
+
+<ul>
+    <li>Something 5</li>
+    <li>Something 6</li>
+</ul>',
+            'expected' => '
+<ol>
+    <li>Something 1</li>
+    <li>Something 2</li>
+</ol>
+
+<ul><li>Something 3</li>
+<li>Something 4</li></ul>
+
+<ul>
+    <li>Something 5</li>
+    <li>Something 6</li>
+</ul>'
+        ], [
+            'about' => '',
             'input' => '
 ',
             'expected' => '
 '
         ], [
-            'input' => '
-',
-            'expected' => '
-'
-        ], [
+            'about' => '',
             'input' => '
 ',
             'expected' => '
@@ -217,9 +256,11 @@ Something 2'
         ]
     ];
 
-    // Strip of starting new lines
+    // Strip of starting new lines. Made this a bit easier for string formatting.
     $tests = array_map(function($test) {
-            return ['input' => substr($test['input'], 1), 'expected' => substr($test['expected'], 1)];
+            return ['input' => substr($test['input'], 1),
+                    'expected' => substr($test['expected'], 1),
+                    'about' => $test['about']];
     }, $tests);
 
     return ['tests' => $tests];
