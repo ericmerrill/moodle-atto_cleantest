@@ -50,11 +50,12 @@ var PLUGINNAME = 'atto_cleantest',
                     '{{#if about}}<div>{{about}}</div>{{/if}}' +
                     '{{#if pass}}' +
                         '<div class="alert alert-success alert-block" data-toggle="collapse" href="#collapse{{testNumber}}" ' +
-                        'role="button" aria-expanded="false" aria-controls="collapse{{testNumber}}">' +
-                        '{{testNumber}} - Pass - Click to expand<br/></div>' +
+                        'role="button" aria-expanded="false" aria-controls="collapse{{testNumber}}" ' +
+                        'style="padding:0.25rem 1.25rem">{{testNumber}} - Pass - Click to expand<br/></div>' +
                     '{{else}}' +
                         '<div class="alert alert-danger alert-block" data-toggle="collapse" href="#collapse{{testNumber}}" ' +
-                        'role="button" aria-expanded="true" aria-controls="collapse{{testNumber}}">{{testNumber}} - Fail</div>' +
+                        'role="button" aria-expanded="true" aria-controls="collapse{{testNumber}}" ' +
+                        'style="padding:0.25rem 1.25rem">{{testNumber}} - Fail</div>' +
                     '{{/if}}' +
                 '</div>' +
                 '<div class="collapse {{#unless pass}}show{{/unless}}" id="collapse{{testNumber}}">' +
@@ -71,7 +72,7 @@ var PLUGINNAME = 'atto_cleantest',
                         '<code><pre class="codeexpected">{{expectedCode}}</pre></code>' +
                     '</div>' +
                 '</div>' +
-                '<hr/>' +
+                '<hr style="margin:0.25rem"/>' +
             '</div>'
     ;
 
@@ -123,8 +124,8 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
             tests = this.get('tests');
 
         for (var i = 0; i < tests.length; i++) {
-            Y.log('Running test ' + i, 'debug', LOGNAME);
             test = tests[i];
+            Y.log('Running test ' + i + " - " + test.about, 'debug', LOGNAME);
 
             cleaned = editor._cleanHTML(test.input, true);
 
