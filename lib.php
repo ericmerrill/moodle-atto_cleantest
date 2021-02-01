@@ -231,10 +231,116 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
             'about' => 'Orphan list items with missing close li',
             'input' => '
 <li>Something 1</li>
-<li>Something 2',
+<li>Something 2</li>
+<li>Something 3',
             'expected' => '
-Something 1
-Something 2'
+<ul><li>Something 1</li>
+<li>Something 2</li></ul>
+Something 3'
+        ], [
+            'about' => 'Orphan list items with missing close li mid list',
+            'input' => '
+<li>Something 1</li>
+<li>Something 2
+<li>Something 3</li>',
+            'expected' => '
+<ul><li>Something 1</li>
+<li>Something 2
+</li><li>Something 3</li></ul>'
+        ], [
+            'about' => 'Orphan list items internal lists',
+            'input' => '
+<li>Something 1</li>
+<li>Something 2</li>
+<ol>
+    <li>Something A</li>
+</ol>
+<li>Something 3</li>
+<li>Something 4</li>
+<ul>
+    <li>Something B</li>
+</ul>
+<li>Something 5</li>
+<li>Something 6</li>',
+            'expected' => '
+<ul><li>Something 1</li>
+<li>Something 2</li>
+<ol>
+    <li>Something A</li>
+</ol>
+<li>Something 3</li>
+<li>Something 4</li>
+<ul>
+    <li>Something B</li>
+</ul>
+<li>Something 5</li>
+<li>Something 6</li></ul>'
+        ], [
+            'about' => 'Orphan list items internal lists in li content',
+            'input' => '
+<li>Something 1</li>
+<li>Something 2</li>
+<li>Something 3 Before
+<ol>
+    <li>Something A</li>
+</ol>
+Something 3 After</li>
+<li>Something 4</li>
+<li>Something 5</li>
+<li>Something 6 Before
+<ul>
+    <li>Something B</li>
+</ul>
+Something 6 After</li>
+<li>Something 7</li>
+<li>Something 8</li>',
+            'expected' => '
+<ul><li>Something 1</li>
+<li>Something 2</li>
+<li>Something 3 Before
+<ol>
+    <li>Something A</li>
+</ol>
+Something 3 After</li>
+<li>Something 4</li>
+<li>Something 5</li>
+<li>Something 6 Before
+<ul>
+    <li>Something B</li>
+</ul>
+Something 6 After</li>
+<li>Something 7</li>
+<li>Something 8</li></ul>'
+        ], [
+            'about' => 'Orphan lis in larger content',
+            'input' => '
+<p>Something before</p>
+<ul>
+    <li>Something A</li>
+    <li>Something B</li>
+</ul>
+<p>Something before 2</p>
+<li>Something 1</li>
+<li>Something 2</li>
+<p>Something after</p>
+<ul>
+    <li>Something C</li>
+    <li>Something D</li>
+</ul>',
+            'expected' => '
+<p>Something before</p>
+<ul>
+    <li>Something A</li>
+    <li>Something B</li>
+</ul>
+<p>Something before 2</p>
+<ul><li>Something 1</li>
+<li>Something 2</li></ul>
+<p>Something after</p>
+<ul>
+    <li>Something C</li>
+    <li>Something D</li>
+</ul>'
         ], [
             'about' => 'List with nested lis',
             'input' => '

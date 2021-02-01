@@ -44,8 +44,7 @@ var PLUGINNAME = 'atto_cleantest',
                 '<div id="passed" class="alert alert-success alert-block">Pass</div>' +
                 '<div id="failed" class="alert alert-danger alert-block">Fail</div>' +
             '</div>' +
-            '<hr/><div id="results"></div>'
-            ,
+            '<hr/><div id="results"></div>',
     TESTTEMPLATE = '' +
             '<div class="codetest">' +
                 '<div>' +
@@ -114,7 +113,7 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
         this._runTests();
     },
 
-    _runTests: function(e) {
+    _runTests: function() {
         var template = Y.Handlebars.compile(TESTTEMPLATE),
             content = null,
             cleaned = null,
@@ -122,14 +121,22 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
             pass = false,
             passes = 0,
             fails = 0,
+            msg = null,
             editor = this.get('host'),
             tests = this.get('tests');
 
         for (var i = 0; i < tests.length; i++) {
             test = tests[i];
+            cleaned = '';
             Y.log('Running test ' + i + " - " + test.about, 'debug', LOGNAME);
 
-            cleaned = editor._cleanHTML(test.input, true);
+            try {
+                cleaned = editor._cleanHTML(test.input, true);
+            } catch (exp) {
+                Y.log("Exception thrown", 'debug', LOGNAME);
+                Y.log(exp.toString(), 'debug', LOGNAME);
+                Y.log(exp.stack, 'debug', LOGNAME);
+            }
 
             if (cleaned.localeCompare(test.expected) == 0) {
                 pass = true;
@@ -151,11 +158,11 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
         }
 
         if (fails) {
-            var msg = fails + ' out of ' + tests.length + ' tests failed!';
+            msg = fails + ' out of ' + tests.length + ' tests failed!';
             this.dialogue.bodyNode.one("#failed").set('innerHTML', msg);
             this.dialogue.bodyNode.one("#failed").show();
         } else {
-            var msg = 'All ' + tests.length + ' tests passed!';
+            msg = 'All ' + tests.length + ' tests passed!';
             this.dialogue.bodyNode.one("#passed").set('innerHTML', msg);
             this.dialogue.bodyNode.one("#passed").show();
         }
