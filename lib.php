@@ -86,13 +86,13 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
             'input' => '
 <ul>
     <li>Something 1</li>
-    Something 3</li>
+    Something 3</LI>
     <li>Something 2</li>
 </ul>',
             'expected' => '
 <ul>
-    <li>Something 1</li><li>
-    Something 3</li>
+    <li>Something 1</li><LI>
+    Something 3</LI>
     <li>Something 2</li>
 </ul>'
         ], [
@@ -142,16 +142,16 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
         ], [
             'about' => 'Extra ul closing tag.',
             'input' => '
-<ul>
-    <li>Something 1</li>
+<UL>
+    <LI>Something 1</LI>
     <li>Something 2</li>
 </ul>
 </ul>',
             'expected' => '
-<ul>
-    <li>Something 1</li>
+<UL>
+    <LI>Something 1</LI>
     <li>Something 2</li>
-</ul>
+</UL>
 '
         ], [
             'about' => 'Orphaned li tags, with other content.',
@@ -184,15 +184,15 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
         ], [
             'about' => 'Missing closing li multiple lines.',
             'input' => '
-<ul>
+<UL>
     <li>Something 1</li>
     <li>Something 2
-</ul>',
+</ul some ul thing>',
             'expected' => '
-<ul>
+<UL>
     <li>Something 1</li>
     <li>Something 2
-</li></ul>'
+</li></UL some ul thing>'
         ], [
             'about' => 'Missing closing li mid list',
             'input' => '
@@ -218,13 +218,13 @@ function atto_cleantest_params_for_js($elementid, $options, $fpoptions) {
         ], [
             'about' => 'Missing closing li and ul with other content.',
             'input' => '
-<ul>
+<UL>
     <li>Something 1</li>
     <li>Something 2
 <p>Something after</p>',
             'expected' => '
-<ul>
-    <li>Something 1</li></ul>
+<UL>
+    <li>Something 1</li></UL>
     Something 2
 <p>Something after</p>'
         ], [
@@ -723,6 +723,36 @@ Random Page</span></span></span></span></a></p>
 
 <p><span><span><span><span><span><!--[if !supportLists]--><span><span>3.<span>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]-->Number
 3</span></span></span></span></span></p>'
+        ], [
+            'about' => 'Behat Test 1',
+            'input' => '
+<ul><li>C</li></ul></ul><li>A</li><li>B</li>',
+            'expected' => '
+<ul><li>C</li></ul><ul><li>A</li><li>B</li></ul>'
+        ], [
+            'about' => 'Behat Test 2',
+            'input' => '
+<ol><li>A</li><li>B</ol><ul><li>C<li>D</li></ol>',
+            'expected' => '
+<ol><li>A</li><li>B</li></ol><ul><li>C</li><li>D</li></ul>'
+        ], [
+            'about' => 'Behat Test 3',
+            'input' => '
+<p>Before</p><li>A</li></li><li>B</li></ol><p>After</p>',
+            'expected' => '
+<p>Before</p><ol><li>A</li><li>B</li></ol><p>After</p>'
+        ], [
+            'about' => 'Behat Test 4',
+            'input' => '
+<p>Before</p></li><ol><li>A</li><li>B<p>After</p>',
+            'expected' => '
+<p>Before</p><ol><li>A</li></ol>B<p>After</p>'
+        ], [
+            'about' => 'Behat Test 5',
+            'input' => '
+<ul><li>A</li>B</li><ol>1</li></ol><li>C</li><p>After</p>',
+            'expected' => '
+<ul><li>A</li><li>B</li><ol><li>1</li></ol><li>C</li></ul><p>After</p>'
         ]
     ];
 

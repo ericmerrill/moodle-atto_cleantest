@@ -133,7 +133,7 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
             } catch (exp) {
             }
 
-            if (cleaned.localeCompare(test.expected) == 0) {
+            if (cleaned == test.expected) {
                 pass = true;
                 passes++;
             } else {
