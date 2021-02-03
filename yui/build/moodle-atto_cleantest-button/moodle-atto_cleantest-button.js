@@ -153,11 +153,11 @@ Y.namespace('M.atto_cleantest').Button = Y.Base.create('button', Y.M.editor_atto
         }
 
         if (fails) {
-            msg = fails + ' out of ' + tests.length + ' tests failed!';
+            msg = fails + ' out of ' + (passes + fails) + ' tests failed!';
             this.dialogue.bodyNode.one("#failed").set('innerHTML', msg);
             this.dialogue.bodyNode.one("#failed").show();
         } else {
-            msg = 'All ' + tests.length + ' tests passed!';
+            msg = 'All ' + passes + ' tests passed!';
             this.dialogue.bodyNode.one("#passed").set('innerHTML', msg);
             this.dialogue.bodyNode.one("#passed").show();
         }

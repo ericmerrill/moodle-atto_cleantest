@@ -726,33 +726,119 @@ Random Page</span></span></span></span></a></p>
         ], [
             'about' => 'Behat Test 1',
             'input' => '
-<ul><li>C</li></ul></ul><li>A</li><li>B</li>',
+    <li>A</li>
+    <li>B</li>
+</ol>
+<ul>
+    <li>C</li>
+</ul></ul>
+<li class="someclass ul UL">D</li>
+<li>E</li>',
             'expected' => '
-<ul><li>C</li></ul><ul><li>A</li><li>B</li></ul>'
+    <ol><li>A</li>
+    <li>B</li>
+</ol>
+<ul>
+    <li>C</li>
+</ul>
+<ul><li class="someclass ul UL">D</li>
+<li>E</li></ul>'
         ], [
             'about' => 'Behat Test 2',
             'input' => '
-<ol><li>A</li><li>B</ol><ul><li>C<li>D</li></ol>',
+<div class="ol"><ol>
+    <li>A</li>
+    <li>B
+</ol></div>
+<ul>
+    <li>C
+    <li>D</li>
+</ol>',
             'expected' => '
-<ol><li>A</li><li>B</li></ol><ul><li>C</li><li>D</li></ul>'
+<div class="ol"><ol>
+    <li>A</li>
+    <li>B
+</li></ol></div>
+<ul>
+    <li>C
+    </li><li>D</li></ul>
+'
         ], [
             'about' => 'Behat Test 3',
             'input' => '
-<p>Before</p><li>A</li></li><li>B</li></ol><p>After</p>',
+<p>Before</p>
+    <li>A</li></li>
+    <li>B</li>
+</ol>
+<p>After</p>
+<ul data-info="UL ul OL ol">
+    <ul>
+        C</li>
+        <li>D</li>
+        <li>E
+    </ul>
+</ul><ul>
+<p>After 2</p>',
             'expected' => '
-<p>Before</p><ol><li>A</li><li>B</li></ol><p>After</p>'
+<p>Before</p>
+    <ol><li>A</li>
+    <li>B</li>
+</ol>
+<p>After</p>
+<ul data-info="UL ul OL ol">
+    <ul><li>
+        C</li>
+        <li>D</li>
+        <li>E
+    </li></ul>
+</ul>
+<p>After 2</p>'
         ], [
             'about' => 'Behat Test 4',
             'input' => '
-<p>Before</p></li><ol><li>A</li><li>B<p>After</p>',
+<p>Before</p></li><ul>
+<ul>
+    <li>A</li>
+    B</li>
+    <li>C</li>
+<ol>
+    <li>D</li>
+    <li>E
+<p>After</p>',
             'expected' => '
-<p>Before</p><ol><li>A</li></ol>B<p>After</p>'
+<p>Before</p>
+<ul>
+    <li>A</li><li>
+    B</li>
+    <li>C</li></ul>
+<ol>
+    <li>D</li></ol>
+    E
+<p>After</p>'
         ], [
             'about' => 'Behat Test 5',
             'input' => '
-<ul><li>A</li>B</li><ol>1</li></ol><li>C</li><p>After</p>',
+<li>Before</li>
+<ul>
+    <li>A</li>
+    B</li>
+    <ol>
+        1</li>
+    </ol>
+    <li>C
+    <li>D</li>
+<p>After</p>',
             'expected' => '
-<ul><li>A</li><li>B</li><ol><li>1</li></ol><li>C</li></ul><p>After</p>'
+<ul><li>Before</li></ul>
+<ul>
+    <li>A</li><li>
+    B</li>
+    <ol><li>
+        1</li>
+    </ol>
+    <li>C
+    </li><li>D</li></ul>
+<p>After</p>'
         ]
     ];
 
