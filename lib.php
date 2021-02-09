@@ -265,15 +265,15 @@ Something 3'
             'expected' => '
 <ul><li>Something 1</li>
 <li>Something 2</li>
-<ol>
+<li><ol>
     <li>Something A</li>
 </ol>
-<li>Something 3</li>
+</li><li>Something 3</li>
 <li>Something 4</li>
-<ul>
+<li><ul>
     <li>Something B</li>
 </ul>
-<li>Something 5</li>
+</li><li>Something 5</li>
 <li>Something 6</li></ul>'
         ], [
             'about' => 'Orphan list items internal lists in li content',
@@ -383,11 +383,11 @@ Something 6 After</li>
 <p>Something before</p>
 <ul>
     <li>A</li>
-    <ol>
+    <li><ol>
         <li>1</li>
         <li>2</li>
     </ol>
-    <li>B</li></ul>
+    </li><li>B</li></ul>
 <p>Something after</p>'
         ], [
             'about' => 'Missing closing ul and ol nested',
@@ -494,52 +494,52 @@ Something 6 After</li>
 <p>These are the things I will be looking for while grading (aka <span>The Requirements</span>):</p>
 <ul>
     <li>Player:</li>
-    <ul>
+    <li><ul>
         <li>Player walks around with the W, A, S, D controls. (4 pts)</li>
         <li>The correct direction animation should play when a direction key is pressed.&nbsp;(4 pts)</li>
         <li>When the direction key is released, the player should stop moving and stop animating.&nbsp;(2 pts)</li>
         <li>The player cannot pass through walls.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Lives<br></li>
-    <ul>
+    <li><ul>
         <li>The current number of lives is displayed in the top left corner.&nbsp;(2 pts)</li>
         <li>Player starts with 3 lives.&nbsp;(2 pts)</li>
         <li>If the player gets to 0 lives, the death animation should play, and the lost message is displayed when that completes.&nbsp;(4 pts)</li>
-    </ul>
+    </ul></li>
     <li>Potions<br></li>
-    <ul>
+    <li><ul>
         <li>There must be at least 2 potions in the game.&nbsp;(1 pts)</li>
         <li>Colliding with a potion adds 1 life.&nbsp;(2 pts)</li>
         <li>The potion is removed when it is "used".&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Bombs</li>
-    <ul>
+    <li><ul>
         <li>There must be at least 3 bombs in the game.&nbsp;(1 pts)</li>
-        <ul>
+        <li><ul>
             <li>There should be only 1 bomb object, but at least 3 instances of that bomb.</li>
-        </ul>
+        </ul></li>
         <li>When the player runs into a bomb, one life is deducted.&nbsp;(2 pts)</li>
         <li>When the player runs into a bomb, the explosion animation is played once, and the bomb is removed at the end of the animation.&nbsp;(4 pts)</li>
         <li>When the bomb animation plays, should play immediately through (once). It shouldn\'t hang on the first (or any) frame while the player is still in contact with it.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Exit</li>
-    <ul>
+    <li><ul>
         <li>When the user gets to the exit door, the won message should be displayed.&nbsp;(3 pts)</li>
-    </ul>
+    </ul></li>
     <li>Misc</li>
-    <ul>
+    <li><ul>
         <li>There must be a perimeter of walls all the way around the room, preventing the player from leaving the game area.&nbsp;(2 pts)<br></li>
         <li>There must be at least 1 wall segment inside the room, at least 5 blocks long, in the room.&nbsp;(2 pts)</li>
         <li>The sand background must be used in a tiled background layer.&nbsp;(2 pts)</li>
         <li>From both the Win or Lose screen, clicking lets the player play again.&nbsp;(3 pts)</li>
         <li>In the resources (right sidebar), go to Options &gt; Main and enter your name next to Author.&nbsp;(2 pts)</li>
         <li>Sprites, Objects, and Rooms should have descriptive names and prefixes.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Made a Submission with required YYZ file. (25pts)</li>
     <li>Instructor\'s discretion. (25pts)</li>
-    <ul>
+    <li><ul>
         <li>General feel of how much effort was put in, sought out help, etc.</li>
-    </ul>
+    </ul></li>
 </ul>
 <p></p>
 <p>You can add interesting or fun things like like sound effects, or different types of enemies for <strong>extra-credit</strong>.<br></p>
@@ -557,74 +557,74 @@ Something 6 After</li>
     <li>Won\'t worry about the requirements all at once. You want to work through each feature like getting the player to move, then animate. Then worry about walls, then bombs, etc.</li>
     <li><a href="https://mymoodle.site/mod/assign/view.php?id=4734367" target="_blank">Exercise 5</a> and&nbsp;<a href="https://mymoodle.site/mod/assign/view.php?id=4734375" target="_blank">Exercise 6</a> are largely based around this project. I
         recommend you do them as early in the process of working on this as you can.</li>
-    <ul>
+    <li><ul>
         <li>Exercise 6 uses an obj_bomb1 and obj_bomb2, but that is only to show two different behaviors. For this project, you will only have one bomb object (with many instances), and it will behave like obj_bomb2 from the exercise.</li>
         <li>The above exercises have almost verbatim walkthroughs of things you need to in in this project.</li>
-    </ul>
+    </ul></li>
     <li>I used 3 rooms in my design - the game room, a winning room with the spt_exit image on an object, and a loosing room with the spt_died image on an object.</li>
-    <ul>
+    <li><ul>
         <li>You will want to use the <strong>Go To Room</strong><img src="https://mymoodle.site/draftfile.php/18814/user/draft/99801609/gotoroom.png" alt="Icon: Down arrow in box" width="32" height="32" class="img-responsive atto_image_button_middle">action.</li>
-    </ul>
+    </ul></li>
     <li>The basic requirements can be done using only drag and drop, but you may use code if you would like (Like you do in Exercise 5).</li>
     <li>You should only only have one bomb <strong>object</strong> in your project, you don\'t need one for each bomb instance.</li>
     <li>You should only have one explorer object in your game (excluding one when he dies) - you should <strong>not</strong> use instance switching for the players different walking directions.</li>
     <li>Remember that you can have an action effect either the current (self) object, or the "other" object in a collision.</li>
     <li>You will need to use something like the If Lives action to check when the player runs out of lives, and then kill the appropriately.</li>
-    <ul>
+    <li><ul>
         <li>Remember that you must attach things you want to happen when an If is true to the <strong>right</strong> side of it. Not to the bottom of it.</li>
-    </ul>
+    </ul></li>
 </ul>',
             'expected' => '
 <h4>The Requirements</h4>
 <p>These are the things I will be looking for while grading (aka <span>The Requirements</span>):</p>
 <ul>
     <li>Player:</li>
-    <ul>
+    <li><ul>
         <li>Player walks around with the W, A, S, D controls. (4 pts)</li>
         <li>The correct direction animation should play when a direction key is pressed.&nbsp;(4 pts)</li>
         <li>When the direction key is released, the player should stop moving and stop animating.&nbsp;(2 pts)</li>
         <li>The player cannot pass through walls.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Lives<br></li>
-    <ul>
+    <li><ul>
         <li>The current number of lives is displayed in the top left corner.&nbsp;(2 pts)</li>
         <li>Player starts with 3 lives.&nbsp;(2 pts)</li>
         <li>If the player gets to 0 lives, the death animation should play, and the lost message is displayed when that completes.&nbsp;(4 pts)</li>
-    </ul>
+    </ul></li>
     <li>Potions<br></li>
-    <ul>
+    <li><ul>
         <li>There must be at least 2 potions in the game.&nbsp;(1 pts)</li>
         <li>Colliding with a potion adds 1 life.&nbsp;(2 pts)</li>
         <li>The potion is removed when it is "used".&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Bombs</li>
-    <ul>
+    <li><ul>
         <li>There must be at least 3 bombs in the game.&nbsp;(1 pts)</li>
-        <ul>
+        <li><ul>
             <li>There should be only 1 bomb object, but at least 3 instances of that bomb.</li>
-        </ul>
+        </ul></li>
         <li>When the player runs into a bomb, one life is deducted.&nbsp;(2 pts)</li>
         <li>When the player runs into a bomb, the explosion animation is played once, and the bomb is removed at the end of the animation.&nbsp;(4 pts)</li>
         <li>When the bomb animation plays, should play immediately through (once). It shouldn\'t hang on the first (or any) frame while the player is still in contact with it.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Exit</li>
-    <ul>
+    <li><ul>
         <li>When the user gets to the exit door, the won message should be displayed.&nbsp;(3 pts)</li>
-    </ul>
+    </ul></li>
     <li>Misc</li>
-    <ul>
+    <li><ul>
         <li>There must be a perimeter of walls all the way around the room, preventing the player from leaving the game area.&nbsp;(2 pts)<br></li>
         <li>There must be at least 1 wall segment inside the room, at least 5 blocks long, in the room.&nbsp;(2 pts)</li>
         <li>The sand background must be used in a tiled background layer.&nbsp;(2 pts)</li>
         <li>From both the Win or Lose screen, clicking lets the player play again.&nbsp;(3 pts)</li>
         <li>In the resources (right sidebar), go to Options &gt; Main and enter your name next to Author.&nbsp;(2 pts)</li>
         <li>Sprites, Objects, and Rooms should have descriptive names and prefixes.&nbsp;(2 pts)</li>
-    </ul>
+    </ul></li>
     <li>Made a Submission with required YYZ file. (25pts)</li>
     <li>Instructor\'s discretion. (25pts)</li>
-    <ul>
+    <li><ul>
         <li>General feel of how much effort was put in, sought out help, etc.</li>
-    </ul>
+    </ul></li>
 </ul>
 <p></p>
 <p>You can add interesting or fun things like like sound effects, or different types of enemies for <strong>extra-credit</strong>.<br></p>
@@ -642,22 +642,22 @@ Something 6 After</li>
     <li>Won\'t worry about the requirements all at once. You want to work through each feature like getting the player to move, then animate. Then worry about walls, then bombs, etc.</li>
     <li><a href="https://mymoodle.site/mod/assign/view.php?id=4734367" target="_blank">Exercise 5</a> and&nbsp;<a href="https://mymoodle.site/mod/assign/view.php?id=4734375" target="_blank">Exercise 6</a> are largely based around this project. I
         recommend you do them as early in the process of working on this as you can.</li>
-    <ul>
+    <li><ul>
         <li>Exercise 6 uses an obj_bomb1 and obj_bomb2, but that is only to show two different behaviors. For this project, you will only have one bomb object (with many instances), and it will behave like obj_bomb2 from the exercise.</li>
         <li>The above exercises have almost verbatim walkthroughs of things you need to in in this project.</li>
-    </ul>
+    </ul></li>
     <li>I used 3 rooms in my design - the game room, a winning room with the spt_exit image on an object, and a loosing room with the spt_died image on an object.</li>
-    <ul>
+    <li><ul>
         <li>You will want to use the <strong>Go To Room</strong><img src="https://mymoodle.site/draftfile.php/18814/user/draft/99801609/gotoroom.png" alt="Icon: Down arrow in box" width="32" height="32" class="img-responsive atto_image_button_middle">action.</li>
-    </ul>
+    </ul></li>
     <li>The basic requirements can be done using only drag and drop, but you may use code if you would like (Like you do in Exercise 5).</li>
     <li>You should only only have one bomb <strong>object</strong> in your project, you don\'t need one for each bomb instance.</li>
     <li>You should only have one explorer object in your game (excluding one when he dies) - you should <strong>not</strong> use instance switching for the players different walking directions.</li>
     <li>Remember that you can have an action effect either the current (self) object, or the "other" object in a collision.</li>
     <li>You will need to use something like the If Lives action to check when the player runs out of lives, and then kill the appropriately.</li>
-    <ul>
+    <li><ul>
         <li>Remember that you must attach things you want to happen when an If is true to the <strong>right</strong> side of it. Not to the bottom of it.</li>
-    </ul>
+    </ul></li>
 </ul>'
         ], [
             'about' => 'Random MS Word Paste.',
@@ -786,12 +786,12 @@ Random Page</span></span></span></span></a></p>
 </ol>
 <p>After</p>
 <ul data-info="UL ul OL ol">
-    <ul><li>
+    <li><ul><li>
         C</li>
         <li>D</li>
         <li>E
     </li></ul>
-</ul>
+</li></ul>
 <p>After 2</p>'
         ], [
             'about' => 'Behat Test 4',
@@ -833,10 +833,10 @@ Random Page</span></span></span></span></a></p>
 <ul>
     <li>A</li><li>
     B</li>
-    <ol><li>
+    <li><ol><li>
         1</li>
     </ol>
-    <li>C
+    </li><li>C
     </li><li>D</li></ul>
 <p>After</p>'
         ]
